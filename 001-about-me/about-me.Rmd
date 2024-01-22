@@ -2,113 +2,130 @@
 title: "About Me"
 author: "Meg Hemmerlein"
 output:
-  pdf_document:
+  html_document:
     toc: yes
   word_document:
     toc: yes
-  html_document:
+  pdf_document:
     toc: yes
 bibliography: references.bib
 ---
 
 # Who I am and where I came from
 
-First off, replace "Insert Name Here" in the YAML header with your name.
-It has to be surrounded by double quotation marks. 
-Briefly tell us a little background about yourself, and how
-you ended up becoming a student at CSU and taking this class.
-Put in a hypertext link to your undergraduate institution.  
+I grew up in Contoocook, New Hampshire and played lots of sports while growing up, including soccer, alpine skiing, and lacrosse. I have always enjoyed the outdoors and therefore gravitated to becoming a scientist. The satisfaction of discovering something outweighed my interest in English literature or history.
 
-Include a numbered list of your top-four favorite leisure activities, like this:
+I went to a small liberal arts college called [Wheaton College](https://wheatoncollege.edu/) in Norton, Massachusetts. I majored in biochemistry at Wheaton and also played 4 years of varsity lacrosse. During my junior year I spent a semester abroad in Christchurch, New Zealand and attended the [University of Canterbury](https://www.canterbury.ac.nz/).
 
-1. My favorite
-1. Second favorite
-1. third favorite
-1. fourth favorite
+After graduating Wheaton, I worked in biotechnology at a company called [Adimab](https://www.adimab.com/). I worked in the antibody engineering department. My job was to work with outside pharmaceutical companies to discovery and engineer antibodies against therapeutic targets (such as a protein related to cancer). After working with many PhD scientists over my 4 years at Adimab, I decided I wanted to advance my career as a scientist and pursue a PhD. 
 
+I joined the Cell and Molecular Biology program at CSU in the fall of 2022. After 3 rotations I decided to join the Wilsterman lab and ask questions about the underlying molecular mechanisms driving high elevation reproductive adaptation in deer mice. I decided to take Computational Approaches to Molecular Ecology to continue adding to my foundational computational knowledge.
 
-Include a picture (jpg or png) of yourself, to get some practice in inserting
-images into RMarkdown. See the example to see how that can be done.
-Note that JPEGs that include EXIF information might be incorrectly rotated.
-That is OK if you can't figure out how to fix it.
+When I am not working I love getting out and being active. My top four things
+to do are:
 
+1. Skiing! (Alpine, Backcountry, Tele, Cross-country (in that order))
+2. Mountain biking (I started coaching the SendTown bike club in Fort Collins, super fun!)
+3. Rock climbing (Slab climbing outside is my favorite, dabbling in crack climbing)
+4. Fly fishing 
 
+Here is a picture of me skiing in Cameron Pass last winter.
 
+```{r me_pic, echo=FALSE, out.width="500px"}
+knitr::include_graphics("/Users/MegHemmerlein/Library/CloudStorage/OneDrive-Colostate/Spring 2024/BZ562/con-gen-csu-mjhemmerlein/images/skiing.jpg", auto_pdf = TRUE)
+```
 
 
 # Research Interests
 
-Brief description of your research interests.
+I am interested in understanding molecular mechanisms underlying reproductive adaptation to high elevation in mammals.
 
 ## Influential papers
 
-Describe two papers that have been very influential in your
-research.  The main purpose of this is learning how to
-cite literature in RMarkdown.  You will have to add the citations
-to `references.bib` in BibTeX format, and then also cite them.
+I submitted a GRFP application this fall and took inspiration from @singh2022importance. Their work described the importance of understanding alternative splicing as a mechanism for adaptive evolution, and helped me to develop my own ideas. In my scientific statement, I hypothesized that evolutionary adaptations to environmental hypoxia involved broad-scale chances in alternative splicing.
 
-An easy way to get the paper in BibTeX format is to find it on
-Google Scholar.  Then, under the paper's link, click on the big 
-fat quotation marks, and then choose the BibTex link at the bottom
-of the page.  Then copy the contents into `references.bib`.  For example
-you might paste this into `references.bib`.
-```
-@article{richardson1997bayesian,
-  title={On Bayesian analysis of mixtures with an unknown number of components (with discussion)},
-  author={Richardson, Sylvia and Green, Peter J},
-  journal={Journal of the Royal Statistical Society: series B (statistical methodology)},
-  volume={59},
-  number={4},
-  pages={731--792},
-  year={1997},
-  publisher={Wiley Online Library}
-}
-```
-Note the string before the comma on the first line.  That is the cite key.
-Once you have done that, you can cite it by including `@richardson1997bayesian`
-if you don't want the name in parenthesis, like, "As @richardson1997bayesian introduced in
-their landmark paper."  On the other hand, you can use `[@richardson1997bayesian]` if
-you do want it all in parentheses, like, "Reversible jump MCMC has been previously applied
-to the analysis of mixtures [@richardson1997bayesian]."
-
+Although I study reproductive adaptation to high elevation in deer mice, I am interested in human literature describing the same adaptive phenotypes (fetal growth restriction). Lorna Moore has many influential papers, such as @moore2003fetal, which outline human adaptation to high elevation on the Tibetan and Andean plateau. 
 
 ## The mathematics behind my research
 
-It is easy to write complex mathematics using a mathematical typesetting
-engine called TeX.  Write two displayed equations that are relevant
-to your work.  For a quick primer on TeX and LaTeX you can
-download [this cheatsheet](https://users.dickinson.edu/~richesod/latex/latexcheatsheet.pdf)
-and then fiddle with including things between the double dollar signs below:
+I use a package called Dream from "variancePartition" to analyze differential gene expression.  Dream uses a linear mixed model to increase power and decrease false positives. I also apply a fixed effect to my model to account for the fact that when sequencing placentas from multiple pups, the pups from the same moms will likely have more similar transcriptomic profiles to each other than the other samples. 
+
+
 $$
-\cos\theta + i\sin\theta = e^{i\theta}
+Genecount + Population*O_2 + (1|Mom)
 $$
-or here:
+
+I will additionally analyze my bulk RNA sequencing data using a weighted gene correlation network analysis (WGCNA). Correlation networks are based on correlations between quantitiatve measurements and can be described by an $n$ x $m$ matrix as shown below. 
+
 $$
-\lim_{n\rightarrow \infty} \frac{1}{n}\sum_{i=1}^n X_i = EX
+X = [x_{ij}] = (x_1, x_2, ..., x_n)
 $$
 
 ## My computing experience
+I have experience coding in Linux and running bash scripts. This a script to align sequencing data to the deer mouse genome using STAR. The Wilsterman lab has a server where I do most of my computation work on. 
+```c
+#!/usr/bin/env bash
+ 
+#SBATCH --job-name=STAR-align_2Pass
+#SBATCH --nodes=1
+#SBATCH --ntasks=18
+#SBATCH --time=unlimited
+#SBATCH --output=/home/mjhemm/projects/LeafCutter/03_output/logfiles/log_STAR-align_2Pass_%J.txt
 
-Describe any experience you have with any programming languages.
-Include a snippet of code in two different languages using a
-non-evaluated code block.  This can be something you have previously
-written, or, if you don't have any, then find and copy a few lines of code
-off the web.
+ls *.fastq.gz | while read file; do
+        name=$(echo "${file}" | cut -d "_" -f 1-5)
+        STAR --runThreadN 18 \
+        --genomeDir /home/mjhemm/projects/LeafCutter/01_input/STAR_genome \
+        --readFilesCommand gunzip -c \
+        --readFilesIn ${name}_R1_001.fastq.gz ${name}_R2_001.fastq.gz \
+        --sjdbFileChrStartEnd ${name}_STAR_SJ.out.tab \
+        --outFileNamePrefix "${name}"_STAR_2Pass_ \
+        --outSAMtype BAM SortedByCoordinate
+done
+```
+
+I also have experience coding in R. I've been working on RNAseq analyses, GO enrichments and am just starting to anlayze Single-nuclei sequencing data. 
+
+```c
+##Load Data
+pema_sm <- Read10X_h5(filename = "raw_feature_bc_matrix.h5")
+str(pema_sm)
+cts <- pema_sm
+ 
+##Initialize the Seurat object with the raw (non-normalized data).
+# Keep all features expressed in at least 3 cells (min.cells = 3)
+# Keep all cells with at least 200 features/genes (min.features = 200)
+pema_seu <- CreateSeuratObject(counts = cts, project = 'Pema_GEX', min.cells = 3, min.features = 200)
+pema_seu
+
+# 3. QC ===================================================
+## perc_mt -----------------------
+pema_seu[['percent_mt']] <- PercentageFeatureSet(pema_seu, pattern = '^MT-')
+View(pema_seu@meta.data)
+VlnPlot(pema_seu, features = c("nCount_RNA", "nFeature_RNA", "percent_mt"), ncol = 3)
+FeatureScatter(pema_seu, feature1 = "nCount_RNA", feature2 = "nFeature_RNA") +
+  geom_smooth(method = 'lm')
+```
 
 ## What I hope to get out of this class
 
-Give me a bullet list of three things:
-
-* This
-* That
-* Another
+* I hope to learn how conduct my projects in a more reproducible way.
+* I hope to gain exposure to ecological questions and the computational tools used to answer them.
+* I hope to better understand which computational packages to impliment for unique questions and projects.
 
 # Evaluating some R code
 
-Here, please evaluate some R code to make a plot or a figure.
-The goal here is just to realize that you can imbed R code
-within fenced code blocks and get the output rendered into
-the document.
+Scatter plot of Petal length vs Sepal length from "Iris" dataset.
+
+```{r}
+library(ggplot2)
+
+ggplot(iris, aes(x = Sepal.Length, y = Petal.Length)) +
+  geom_point() +
+  labs(title = "Scatter Plot of Petal Length vs Sepal Length",
+       x = "Sepal Length", y = "Petal Length")
+```
+
 
 # Citations
 
