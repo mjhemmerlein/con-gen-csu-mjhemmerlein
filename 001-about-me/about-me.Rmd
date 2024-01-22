@@ -55,14 +55,14 @@ $$
 Genecount + Population*O_2 + (1|Mom)
 $$
 
-I will additionally analyze my bulk RNA sequencing data using a weighted gene correlation network analysis (WGCNA). Correlation networks are based on correlations between quantitiatve measurements and can be described by an $n$ x $m$ matrix as shown below. 
+I will additionally analyze my bulk RNA sequencing data using a weighted gene co-expression network analysis (WGCNA). Correlation networks are based on correlations between quantitative measurements and can be described by an $n$ x $m$ matrix as shown below. 
 
 $$
 X = [x_{ij}] = (x_1, x_2, ..., x_n)
 $$
 
 ## My computing experience
-I have experience coding in Linux and running bash scripts. This a script to align sequencing data to the deer mouse genome using STAR. The Wilsterman lab has a server where I do most of my computation work on. 
+I have experience coding in Linux and running bash scripts. This a script to align sequencing data to the deer mouse genome using STAR. The Wilsterman lab has a server where I do most of my computation work. 
 ```c
 #!/usr/bin/env bash
  
@@ -111,11 +111,11 @@ FeatureScatter(pema_seu, feature1 = "nCount_RNA", feature2 = "nFeature_RNA") +
 
 * I hope to learn how conduct my projects in a more reproducible way.
 * I hope to gain exposure to ecological questions and the computational tools used to answer them.
-* I hope to better understand which computational packages to impliment for unique questions and projects.
+* I hope to better understand which computational packages to implement for unique questions and projects.
 
 # Evaluating some R code
 
-Scatter plot of Petal length vs Sepal length from "Iris" dataset.
+Scatter plot of Petal length vs Sepal length from "Iris" data set.
 
 ```{r}
 library(ggplot2)
