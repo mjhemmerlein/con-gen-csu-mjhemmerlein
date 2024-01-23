@@ -32,7 +32,7 @@ to do are:
 Here is a picture of me skiing in Cameron Pass last winter.
 
 ```{r me_pic, echo=FALSE, out.width="500px"}
-knitr::include_graphics("/Users/MegHemmerlein/Library/CloudStorage/OneDrive-Colostate/Spring 2024/BZ562/con-gen-csu-mjhemmerlein/images/skiing.jpg", auto_pdf = TRUE)
+knitr::include_graphics("../images/skiing.jpg", auto_pdf = TRUE)
 ```
 
 
